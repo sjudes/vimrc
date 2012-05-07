@@ -1,3 +1,9 @@
+" Font
 set guifont=Consolas:h10
+
+" Colour scheme
 colorscheme wombat
 
+" Remove scroll-bars
+set guioptions+=LlRrb
+set guioptions-=LlRrb
