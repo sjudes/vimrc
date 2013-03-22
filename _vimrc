@@ -5,7 +5,6 @@
 "-------------------------------------------------------------------------------
 "	Syntax Highlighting
 "-------------------------------------------------------------------------------
-filetype plugin on
 syntax on
     
 "-------------------------------------------------------------------------------
@@ -14,8 +13,9 @@ syntax on
 filetype plugin indent on
 set tabstop=4
 set shiftwidth=4
-set clipboard=unnamed
+set clipboard^=unnamed
 set autochdir
+set scrolloff=7
 
 "-------------------------------------------------------------------------------
 "	Menus
@@ -28,26 +28,36 @@ set wildmenu
 set number
 
 "-------------------------------------------------------------------------------
+"	Leader key
+"-------------------------------------------------------------------------------
+let mapleader=','
+
+"-------------------------------------------------------------------------------
 "	Key Mappings
 "-------------------------------------------------------------------------------
 " Avoid accidental :W instead of :w
-cmap W w
+cnoremap W w
 
 " Insert new lines without leaving normal mode
-nmap ,o o<C-c>k
-nmap ,O O<C-c>j
+nnoremap <leader>o o<C-c>k
+nnoremap <leader>O O<C-c>j
 
 " Easier move screen up/down
-nmap <C-j> <C-e>
-nmap <C-k> <C-y>
+nnoremap <C-j> <C-e>
+nnoremap <C-k> <C-y>
 
 " Easier tabbing in visual mode
-vmap <Tab> >gv
-vmap <S-Tab> <gv
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
 
 " Switch tabs
-map <F7> :tabp<CR>
-map <F8> :tabn<CR>
+noremap <F7> :tabp<CR>
+noremap <F8> :tabn<CR>
+
+" Comment lines with separators
+nnoremap <leader>s 0O#<esc>78a-<esc>ao<CR>#<tab>
+nnoremap <leader>S 0O#<esc>78a-<esc>ao<CR>#<CR>#<esc>78a-<esc>ao<esc>ka<tab>
+nnoremap <leader><C-S> 0O#<esc>78a-<esc>ao<CR>#<CR>#<CR>#<CR>#<esc>78a-<esc>ao<esc>kka<tab>
 
 "-------------------------------------------------------------------------------
 "	Searching
@@ -66,7 +76,7 @@ function! ToggleHighlight()
 	endif
 	let g:wordHighlighted = 1 - g:wordHighlighted
 endfunction
-map <silent> ; :call ToggleHighlight()<CR>
+noremap <silent> ; :call ToggleHighlight()<CR>
 
 "-------------------------------------------------------------------------------
 "	Status Line (now using Powerline plugin instead)
@@ -80,7 +90,7 @@ map <silent> ; :call ToggleHighlight()<CR>
 "set statusline +=%5*%{&ff}%*            "file format
 "set statusline +=%2*%m%*                "modified flag
 "set statusline +=%{strftime('%c',getftime(expand('%')))}
-"set statusline +=%1*%=%5l%*             "current line
+"set STATUSLINE +=%1*%=%5l%*             "current line
 "set statusline +=%2*/%L%*               "total lines
 "set statusline +=%1*%4v\ %*             "virtual column number
 "set statusline +=%2*0x%04B\ %*          "character under cursor
