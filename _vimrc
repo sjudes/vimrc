@@ -6,7 +6,7 @@
 "	Syntax Highlighting
 "-------------------------------------------------------------------------------
 syntax on
-    
+
 "-------------------------------------------------------------------------------
 "	Indentation, Tabs stops
 "-------------------------------------------------------------------------------
@@ -31,6 +31,7 @@ set number
 "	Leader key
 "-------------------------------------------------------------------------------
 let mapleader=','
+let maplocalleader=','
 
 "-------------------------------------------------------------------------------
 "	Key Mappings
@@ -51,6 +52,7 @@ vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 
 " Switch tabs
+"	- not sure how useful this is ...
 noremap <F7> :tabp<CR>
 noremap <F8> :tabn<CR>
 
@@ -58,6 +60,26 @@ noremap <F8> :tabn<CR>
 nnoremap <leader>s 0O#<esc>78a-<esc>ao<CR>#<tab>
 nnoremap <leader>S 0O#<esc>78a-<esc>ao<CR>#<CR>#<esc>78a-<esc>ao<esc>ka<tab>
 nnoremap <leader><C-S> 0O#<esc>78a-<esc>ao<CR>#<CR>#<CR>#<CR>#<esc>78a-<esc>ao<esc>kka<tab>
+
+" Exit insert mode without moving your hand
+inoremap jk <esc>
+
+" Complete word without moving your hand
+inoremap kj <C-N>
+
+" Quickly edit/source vimrc
+nnoremap <leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
+
+" Comment/Uncomment xml tags
+"	- first select the whole block with 'vat'
+"	- need to adjust this to only work for xml files
+vnoremap <localleader>c <esc>`>a--><esc>`<i<!--<esc>`<v`>$
+vnoremap <localleader>C <esc>`<:s/^\([ \t]*\)<!--/\1/<CR>`>:s/-->\([ \t]\)*/\1/<CR>`<v`>
+
+" Python comment/uncomment
+" 	- this doesn't work yet ... how to do commands inside autocmd?
+"vnoremap <localleader>c <esc>:`<,`>s/^\([ \t]*\)/#\1/<CR>`<v`>
 
 "-------------------------------------------------------------------------------
 "	Searching
