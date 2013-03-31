@@ -1,63 +1,86 @@
 "-------------------------------------------------------------------------------
 "	.vimrc
 "-------------------------------------------------------------------------------
+
+"-------------------------------------------------------------------------------
+"	Vim rather than Vi
+" {{{
 set nocompatible
+" }}}
+
+"-------------------------------------------------------------------------------
+" Vimscript file settings 
+" {{{
+augroup filetype_vim
+	autocmd!
+	autocmd FileType vim setlocal foldmethod=marker
+augroup END
+" }}}
 
 "-------------------------------------------------------------------------------
 "	Syntax Highlighting
-"-------------------------------------------------------------------------------
+" {{{
 syntax on
+" }}}
 
 "-------------------------------------------------------------------------------
 "	Indentation, Tabs stops
-"-------------------------------------------------------------------------------
+" {{{
 filetype plugin indent on
 set tabstop=4
 set shiftwidth=4
 set clipboard^=unnamed
 set autochdir
 set scrolloff=7
+" }}}
 
 "-------------------------------------------------------------------------------
 "	Menus
-"-------------------------------------------------------------------------------
+" {{{
 set wildmenu
+" }}}
 
 "-------------------------------------------------------------------------------
 "	Line numbering
-"-------------------------------------------------------------------------------
+" {{{
 set number
+" }}}
 
 "-------------------------------------------------------------------------------
 "	Allow backspace in insert mode
-"-------------------------------------------------------------------------------
+" {{{
 set backspace=2
+" }}}
 
 "-------------------------------------------------------------------------------
 "	Indentation and folding
-"-------------------------------------------------------------------------------
+" {{{
 set autoindent
 set smartindent
 set foldmethod=indent
 set foldnestmax=20
+set foldlevelstart=0
 nnoremap <space> za
 vnoremap <tab> >gv
 vnoremap <S-tab> <gv
+" }}}
 
 "-------------------------------------------------------------------------------
 "	Lazy redraw - don't redraw while executing macros
-"-------------------------------------------------------------------------------
+" {{{
 set lazyredraw
+" }}}
 
 "-------------------------------------------------------------------------------
 "	Leader keys
-"-------------------------------------------------------------------------------
+" {{{
 let mapleader=','
 let maplocalleader=','
+" }}}
 
 "-------------------------------------------------------------------------------
 "	Key Mappings
-"-------------------------------------------------------------------------------
+" {{{
 " Avoid accidental :W instead of :w
 cnoremap W w
 
@@ -102,10 +125,11 @@ vnoremap <localleader>C <esc>`<:s/^\([ \t]*\)<!--/\1/<CR>`>:s/-->\([ \t]\)*/\1/<
 " Python comment/uncomment
 " 	- this doesn't work yet ... how to do commands inside autocmd?
 "vnoremap <localleader>c <esc>:`<,`>s/^\([ \t]*\)/#\1/<CR>`<v`>
+" }}}
 
 "-------------------------------------------------------------------------------
 "	Searching
-"-------------------------------------------------------------------------------
+" {{{
 set incsearch
 set hlsearch
 
@@ -121,10 +145,11 @@ function! ToggleHighlight()
 	let g:wordHighlighted = 1 - g:wordHighlighted
 endfunction
 noremap <silent> ; :call ToggleHighlight()<CR>
+" }}}
 
 "-------------------------------------------------------------------------------
 "	Status Line (now using Powerline plugin instead)
-"-------------------------------------------------------------------------------
+" {{{
 "set laststatus=2	" Always show the statusline
 "set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
 "set statusline=
@@ -138,4 +163,5 @@ noremap <silent> ; :call ToggleHighlight()<CR>
 "set statusline +=%2*/%L%*               "total lines
 "set statusline +=%1*%4v\ %*             "virtual column number
 "set statusline +=%2*0x%04B\ %*          "character under cursor
+" }}}
 
