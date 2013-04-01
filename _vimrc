@@ -82,7 +82,8 @@ let maplocalleader=','
 "	Key Mappings
 " {{{
 " Avoid accidental :W instead of :w
-cnoremap W w
+" This seems to cause more problems than it solves
+"cnoremap W w
 
 " Insert new lines without leaving normal mode
 nnoremap <leader>o o<C-c>k
